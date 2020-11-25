@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
 
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'TFH-Front';
-  displayedColumns: string[] = ['position', 'name', 'progress',];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'progress'];
+  dataSource1 = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource2 = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+
+  @ViewChild('paginator1') paginator1: MatPaginator | null;
+  @ViewChild('paginator2') paginator2: MatPaginator | null;
+
+  ngAfterViewInit() {
+    this.dataSource1.paginator = this.paginator1;
+    this.dataSource2.paginator = this.paginator2;
+  }
 }
 
 export interface PeriodicElement {

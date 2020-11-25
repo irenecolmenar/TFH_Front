@@ -33,8 +33,7 @@
             "styles": [
               "src/custom-theme.scss",
               "src/styles.less",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.less"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
