@@ -1,0 +1,66 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: tfh-front
+  labels:
+    app: tfh-front
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tfh-front
+  template:
+    metadata:
+      labels:
+        app: tfh-front
+    spec:
+      containers:
+        - name: tfh-front
+          image: "sockmal/tfh-front:0.1.0"
+          ports:
+          - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "500m"
+            limits:
+                memory: "512Mi"
+                cpu: "900m"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: tfh-front-service
+spec:
+  selector:
+    app: tfh-front
+  ports:
+    - port: 8080 # Default port for image
+
+---
+
+apiVersion: v1
+kind: Route
+metadata:
+  name: tfh-front-service
+spec:
+  #path: /
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: tfh-front-service
