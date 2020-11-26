@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tfh-front
-          image: "sockmal/tfh-front:0.1.0"
+          image: "sockmal/tfh-front:0.2.0"
           ports:
           - containerPort: 8080
           livenessProbe:
