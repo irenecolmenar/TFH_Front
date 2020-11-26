@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableHttpExampleComponent } from './table-http-example.component';
+import { MissionsComponent } from './missions.component';
 
-describe('TableHttpExampleComponent', () => {
-  let component: TableHttpExampleComponent;
-  let fixture: ComponentFixture<TableHttpExampleComponent>;
+describe('MissionsComponent', () => {
+  let component: MissionsComponent;
+  let fixture: ComponentFixture<MissionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableHttpExampleComponent ]
+      declarations: [ MissionsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableHttpExampleComponent);
+    fixture = TestBed.createComponent(MissionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

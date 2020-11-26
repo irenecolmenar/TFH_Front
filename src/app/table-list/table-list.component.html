@@ -17,12 +17,10 @@
                       'd-md-table-cell': column.display==='d-md',
                       'd-lg-table-cell': column.display==='d-lg',
                       'd-xl-table-cell': column.display==='d-xl'}">
-
-                hola
+                {{ element[column.id] }}
             </td>
         </ng-container>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="columnsConfig"></tr>
     <tr mat-row *matRowDef="let element; columns: columnsConfig;" class="touchable"></tr>
 </table>

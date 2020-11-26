@@ -28,8 +28,10 @@ export class TasksComponent implements OnInit {
     this.tasks$ = new BehaviorSubject<TaskDto[]>(this.tasks);
     this.routeToP = '';
     this.columnsP = [
-      { id: 'name', name: 'name', pos: 'left', display: 'all' },
       { id: 'description', name: 'Descripción', pos: 'left', display: 'all' },
+      { id: 'key', name: 'key', pos: 'left', display: 'all' },
+      { id: 'name', name: 'name', pos: 'left', display: 'all' },    
+      { id: 'status', name: 'status', pos: 'left', display: 'all' },
       { id: 'taskPoint', name: 'Puntos', pos: 'left', display: 'all' }    ];
   }
 
@@ -38,7 +40,7 @@ export class TasksComponent implements OnInit {
   }
 
   updateTable() {
-    this.httpClient.get<TaskDto[]>(environment.apiUrl + '/users/Stan/tasks')
+    this.httpClient.get<TaskDto[]>(environment.apiUrl + '/users/Linda/tasks')
       .pipe(
         map(arrayTasks =>
           arrayTasks.map(task => {
@@ -47,6 +49,7 @@ export class TasksComponent implements OnInit {
         )
       ).subscribe(
         data => {
+          console.log(data);
           this.tasks = data;
           this.tasks$.next(this.tasks);
         }

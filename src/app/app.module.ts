@@ -10,9 +10,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HttpClientModule } from '@angular/common/http';
 
-
-import { TableHttpExampleComponent } from './table-http-example/table-http-example.component';
-import { TableRestComponent } from './table-rest/table-rest.component';
 import { TableListComponent } from './table-list/table-list.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { MatSortModule } from '@angular/material/sort';
@@ -24,15 +21,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MissionsComponent } from './missions/missions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableHttpExampleComponent,
-    TableRestComponent,
     TableListComponent,
     TasksComponent,
-    NewTaskDialogComponent
+    NewTaskDialogComponent,
+    MissionsComponent
   ],
   imports: [
     BrowserModule,

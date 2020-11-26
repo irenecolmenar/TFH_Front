@@ -15,7 +15,7 @@ export class TableListComponent implements OnInit {
   public dataTable: MatTableDataSource<any> = new MatTableDataSource();
   public columnsConfig: string[];
 
-  public _allTypeColumns = ['visible', 'updatedDate', 'type', 'methodBill', 'valueBill', '_lastUpdate', '_totalValue', 'event', 'name', 'surname' , 'editable', 'eventCompany'];
+  public _allTypeColumns = ['visible', 'updatedDate', 'type', 'methodBill', 'valueBill', '_lastUpdate', '_totalValue', 'event', 'name', 'surname', 'editable', 'eventCompany'];
 
   @Input() columns: ColumnsTable[];
   @Input() list: Observable<any[]>;
@@ -42,8 +42,8 @@ export class TableListComponent implements OnInit {
       const isAsc = event.direction === 'asc';
       switch (event.active) {
         case 'name': return this.compare(a.name.toLocaleLowerCase(), b.name.toLocaleLowerCase(), isAsc);
-        case 'allname': return this.compare(a.surname.toLocaleLowerCase()+', '+a.name.toLocaleLowerCase(),
-                                            b.surname.toLocaleLowerCase()+', '+b.name.toLocaleLowerCase(), isAsc);
+        case 'allname': return this.compare(a.surname.toLocaleLowerCase() + ', ' + a.name.toLocaleLowerCase(),
+          b.surname.toLocaleLowerCase() + ', ' + b.name.toLocaleLowerCase(), isAsc);
         case 'updatedDate': return this.compare(a.updatedDate, b.updatedDate, isAsc);
         case 'eventCompany': return this.compare(a.company.name, b.company.name, isAsc);
         case 'valueBill': return this.compare(a.value, b.value, isAsc);

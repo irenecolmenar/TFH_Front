@@ -1,6 +1,5 @@
-<div id="global" class="container-fluid">
+<div id="global" class="container-fluid" style="margin-top:50px;">
   <div class="row">
-
     <div id="left_panel" class="col-3">
       <app-tasks></app-tasks>
     </div>
@@ -9,17 +8,18 @@
       <div class="container">
         <div class="row">
           <div id="upper_panel" class="col-12">
-
             <mat-tab-group>
               <mat-tab *ngFor="let kid of kids; let index = index" [label]="kid.name">
                 <ng-template mat-tab-label>
                   <img src='/assets/img/profile_image.png' class="rounded-circle">
                   <p>{{ kid.name }}</p>
                 </ng-template>
-                <div id="upper_panel" class="col-6">
-                  <app-tasks></app-tasks>
+                
+                <div id="down_pannel>" style="text-align:center;">
+                  <div class="row col-11">
+                  <app-tasks class="col-6"></app-tasks>
+                  <app-missions class="col-6"></app-missions>
                 </div>
-                <div id="down_pannel" class="col-6">
                 </div>
               </mat-tab>
             </mat-tab-group>
