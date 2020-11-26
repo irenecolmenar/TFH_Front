@@ -64,3 +64,17 @@ spec:
   to:
     kind: Service
     name: tfh-front-service
+
+---
+apiVersion: v1
+kind: Route
+metadata:
+  name: tfh-front-tk
+spec:
+  #path: /
+  host: "www.tinfoilrewardgame.tk"
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: tfh-front-service
