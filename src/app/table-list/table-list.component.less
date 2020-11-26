@@ -1,0 +1,21 @@
+.tableFilter {
+  background-color:rgba(0, 0, 0, 0.04) !important;
+  font-size: 14px;
+}
+
+.mainDataTable {
+    tr{
+        &::focus{
+            outline: none;
+        }
+        &.mat-row{
+            &:hover{
+                background-color:rgba(0, 0, 0, 0.04) !important;
+            }
+            td {
+                border-bottom-width: 0;
+            }
+        }
+    }
+}
+    

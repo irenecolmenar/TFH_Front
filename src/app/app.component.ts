@@ -1,46 +1,59 @@
-import { Component } from '@angular/core';
-
-import {AfterViewInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent implements AfterViewInit {
-  title = 'TFH-Front';
-  displayedColumns: string[] = ['position', 'name', 'progress'];
-  dataSource1 = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  dataSource2 = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class AppComponent implements OnInit {
 
+  public title: string;
+  public kids: KidDto[];
 
-  @ViewChild('paginator1') paginator1: MatPaginator | null;
-  @ViewChild('paginator2') paginator2: MatPaginator | null;
-
-  ngAfterViewInit() {
-    this.dataSource1.paginator = this.paginator1;
-    this.dataSource2.paginator = this.paginator2;
+  constructor(
+    private httpClient: HttpClient
+  ) { 
+    this.title = 'TFH-Front';
+    this.kids = [];
   }
+
+  ngOnInit(): void {
+    this.updateKids();
+  }
+
+  /**
+   * actualiza los datos de los niños.
+   */
+  updateKids() {
+
+    this.kids = [
+      {
+        id: 1,
+        name: 'clara',
+        surname: 'del monte1'
+      },
+      {
+        id: 2,
+        name: 'clara',
+        surname: 'del monte2'
+      },
+      {
+        id: 3,
+        name: 'clara',
+        surname: 'del monte3'
+      },
+    ]
+    // this.httpClient.get<KidDto[]>("METE")
+    //   .subscribe(
+    //     data => { this.kids = data; }
+    //   );
+  }
+
 }
 
-export interface PeriodicElement {
+export interface KidDto {
+  id: number;
   name: string;
-  position: number;
-  progress: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse', progress: 1.0079},
-  { position: 2, name: 'Helium', progress: 4.0026},
-  { position: 3, name: 'Lithium', progress: 6.941},
-  { position: 4, name: 'Beryllium', progress: 9.0122},
-  { position: 5, name: 'Boron', progress: 10.811},
-  { position: 6, name: 'Carbon', progress: 12.0107},
-  { position: 7, name: 'Nitrogen', progress: 14.0067},
-  { position: 8, name: 'Oxygen', progress: 15.9994},
-  { position: 9, name: 'Fluorine', progress: 18.9984},
-  { position: 10, name: 'Neon', progress: 20.1797},
-];
-
+  surname: string;
+};

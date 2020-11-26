@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Añadir tarea</h2>
+<mat-dialog-content class="mat-typography">
+    <form>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput placeholder="Platos" [(ngModel)]="data.name" name="description">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Descripción</mat-label>
+            <input type="text" matInput placeholder="Ej: Lava los platos todos los días de la semana" [(ngModel)]="data.description" name="description">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Puntos</mat-label>
+            <input type="text" matInput placeholder="10" [(ngModel)]="data.points" name="points">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="createTask()" cdkFocusInitial>Crear</button>
+</mat-dialog-actions>
