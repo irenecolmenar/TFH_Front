@@ -6,9 +6,11 @@
 - Exampe to Build and Push Docker image
 
 ```bash
-    docker build -t sockmal/tfh-front:0.1.0 .
+    npm run build
 
-    docker push sockmal/tfh-front:0.1.0
+    docker build -t sockmal/tfh-front .
+
+    docker push sockmal/tfh-front
 ```
 
 ## K8s manifest

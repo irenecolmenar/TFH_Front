@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tfh-front
-          image: "sockmal/tfh-front:0.2.0"
+          image: "sockmal/tfh-front:0.3.0"
           ports:
           - containerPort: 8080
           livenessProbe:
@@ -34,10 +34,10 @@ spec:
           resources:
             requests:
                 memory: "256Mi"
-                cpu: "500m"
+                cpu: "200m"
             limits:
                 memory: "512Mi"
-                cpu: "900m"
+                cpu: "980m"
 
 ---
 
@@ -50,20 +50,6 @@ spec:
     app: tfh-front
   ports:
     - port: 8080 # Default port for image
-
----
-
-apiVersion: v1
-kind: Route
-metadata:
-  name: tfh-front-service
-spec:
-  #path: /
-  port:
-    targetPort: 8080
-  to:
-    kind: Service
-    name: tfh-front-service
 
 ---
 apiVersion: v1
