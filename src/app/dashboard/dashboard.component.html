@@ -1,0 +1,35 @@
+<p>
+  <mat-toolbar color="primary" class="fixed-top">
+    <span>TinFoil Reward Game</span>
+  </mat-toolbar>
+</p>
+<div id="global" class="container-fluid" style="margin-top:70px!important;">
+  <div class="row">
+    <div id="left_panel" class="col-3">
+      <app-tasks></app-tasks>
+    </div>
+
+    <div id="right_panel" class="col-9">
+      <div class="row">
+        <div id="upper_panel" class="col-12">
+          <mat-tab-group>
+            <mat-tab *ngFor="let kid of kids; let index = index" [label]="kid.name">
+              <ng-template mat-tab-label>
+                <img src='/assets/img/profile_image.png' class="rounded-circle">
+                <p>{{ kid.name }} {{ kid.surname }} <br> {{ kid.totalPoint }} <img style="size:70%"
+                    src="https://img.icons8.com/material/24/000000/money-box--v1.png" /></p>
+              </ng-template>
+
+              <div id="down_pannel>" style="text-align:center;">
+                <div class="row col-11">
+                  <app-asignedtasks class="col-6" [kidSelected]="kid"></app-asignedtasks>
+                  <app-missions class="col-6" [kidSelected]="kid"></app-missions>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://tfh-task-service-tinfoilhat.apps.cluster-6b24.6b24.example.opentlc.com'
+  //apiUrl: 'https://routec1dg88wv-user4-codeready.apps.cluster-6b24.6b24.example.opentlc.com'
+  apiUrl: 'http://tfh-ms-service-tinfoilhat.apps.cluster-6b24.6b24.example.opentlc.com'
 };
 
 /*

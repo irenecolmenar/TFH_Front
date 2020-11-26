@@ -1,23 +1,25 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ColumnsTable } from '../table-list/table-list.component';
 import { MatDialog } from '@angular/material/dialog';
-import { NewTaskDialogComponent } from './new-task-dialog/new-task-dialog.component';
 import { environment } from '../../environments/environment';
+import { KidDto } from '../dashboard/dashboard.component';
+
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.less']
+  selector: 'app-asignedtasks',
+  templateUrl: './asignedtasks.component.html',
+  styleUrls: ['./asignedtasks.component.less']
 })
-export class TasksComponent implements OnInit {
+export class AsignedtasksComponent implements OnInit {
 
   public tasks: TaskDto[];
   public tasks$: BehaviorSubject<TaskDto[]>;
   public routeToP = '';
   public columnsP: ColumnsTable[];
+  @Input()kidSelected: KidDto;
 
   constructor(
     private httpClient: HttpClient,
@@ -37,7 +39,7 @@ export class TasksComponent implements OnInit {
   }
 
   updateTable() {
-    this.httpClient.get<TaskDto[]>(environment.apiUrl + '/tasks')
+    this.httpClient.get<TaskDto[]>(environment.apiUrl + '/children/' + this.kidSelected.id + '/tasks')
       .pipe(
         map(arrayTasks =>
           arrayTasks.map(task => {
@@ -51,44 +53,6 @@ export class TasksComponent implements OnInit {
           this.tasks$.next(this.tasks);
         }
       );
-  }
-
-  newTask(): void {
-    const dialogRef = this.dialog.open(NewTaskDialogComponent, {
-      data: { name: '', description: '', points: 0 }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      const newData = new TaskDto(result.description, "", result.name, "No empezado", result.taskPoint);
-      // this.tasks.push(newData);
-      // this.tasks$.next(this.tasks);
-      const body = new HttpParams()
-        .set('description', result.description)
-        .set('key', "")
-        .set('name', result.name)
-        .set('status', "No empezada")
-        .set('points', result.taskPoint);
-
-      //const paramsArray = body.keys().map(x => ({ [x]: body.get(x) }));
-
-      console.log(JSON.stringify(body));
-
-      let httpHeaders = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
-      });
-      let options = {
-        headers: httpHeaders
-      };
-
-      this.httpClient.post<void>(environment.apiUrl + '/tasks', JSON.stringify(newData), options)
-        .subscribe(
-          data => {
-            const newData = new TaskDto(result.description, "", result.name, "No empezado", result.taskPoints);
-            this.tasks.push(newData);
-            this.tasks$.next(this.tasks);
-          }
-        );
-    });
   }
 }
 

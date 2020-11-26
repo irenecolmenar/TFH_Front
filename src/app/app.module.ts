@@ -19,9 +19,14 @@ import { NewTaskDialogComponent } from './tasks/new-task-dialog/new-task-dialog.
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MissionsComponent } from './missions/missions.component';
+import { AsignedtasksComponent } from './asignedtasks/asignedtasks.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoginComponent } from './login/login.component';
+import { MatCardModule } from '@angular/material/card';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,10 @@ import { MissionsComponent } from './missions/missions.component';
     TableListComponent,
     TasksComponent,
     NewTaskDialogComponent,
-    MissionsComponent
+    MissionsComponent,
+    AsignedtasksComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,10 @@ import { MissionsComponent } from './missions/missions.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatToolbarModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

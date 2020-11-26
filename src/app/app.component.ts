@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -8,52 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
 
-  public title: string;
-  public kids: KidDto[];
-
-  constructor(
-    private httpClient: HttpClient
-  ) { 
-    this.title = 'TFH-Front';
-    this.kids = [];
-  }
-
   ngOnInit(): void {
-    this.updateKids();
-  }
-
-  /**
-   * actualiza los datos de los niños.
-   */
-  updateKids() {
-
-    this.kids = [
-      {
-        id: 1,
-        name: 'clara',
-        surname: 'del monte1'
-      },
-      {
-        id: 2,
-        name: 'clara',
-        surname: 'del monte2'
-      },
-      {
-        id: 3,
-        name: 'clara',
-        surname: 'del monte3'
-      },
-    ]
-    // this.httpClient.get<KidDto[]>("METE")
-    //   .subscribe(
-    //     data => { this.kids = data; }
-    //   );
   }
 
 }
-
-export interface KidDto {
-  id: number;
-  name: string;
-  surname: string;
-};

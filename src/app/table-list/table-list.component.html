@@ -3,15 +3,14 @@
 
     <ng-container *ngFor="let column of columns">
         <ng-container [matColumnDef]="column.id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header="{{column.id}}" [ngClass]="{'th-column-right': column.pos==='right',
-                      'th-column-middle': column.pos==='middle',
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="{{column.id}}" [ngClass]="{'th-column-right': column.pos==='left',
+                      'th-column-middle': column.pos==='left',
                       'd-none': column.display!=='all',
                       'd-sm-table-cell': column.display==='d-sm',
                       'd-md-table-cell': column.display==='d-md',
                       'd-lg-table-cell': column.display==='d-lg',
                       'd-xl-table-cell': column.display==='d-xl'}">{{ column.name }}</th>
-            <td mat-cell *matCellDef="let element" [ngClass]="{'text-right': column.pos==='right',
-                      'text-center': column.pos==='middle',
+            <td mat-cell *matCellDef="let element" [ngClass]="{'text-left': column.pos==='left',
                       'd-none': column.display!=='all',
                       'd-sm-table-cell': column.display==='d-sm',
                       'd-md-table-cell': column.display==='d-md',
