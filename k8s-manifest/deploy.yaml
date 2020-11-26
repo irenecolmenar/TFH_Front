@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tfh-front
-          image: "sockmal/tfh-front:0.3.0"
+          image: "sockmal/tfh-front:0.4.0"
           ports:
           - containerPort: 8080
           livenessProbe:
@@ -51,16 +51,5 @@ spec:
   ports:
     - port: 8080 # Default port for image
 
----
-apiVersion: v1
-kind: Route
-metadata:
-  name: tfh-front-tk
-spec:
-  #path: /
-  host: "www.tinfoilrewardgame.tk"
-  port:
-    targetPort: 8080
-  to:
-    kind: Service
-    name: tfh-front-service
+## oc route
+## oc create route edge --service=tfh-front-service --cert=ca.cert --key=ca.key --ca-cert=ca.crt --hostname=www.tinfoilrewardgame.tk
