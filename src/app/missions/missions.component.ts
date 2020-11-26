@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ColumnsTable } from '../table-list/table-list.component';
-import { TableListComponent } from '../table-list/table-list.component';
 import { environment } from '../../environments/environment';
 import { KidDto } from '../dashboard/dashboard.component';
 
@@ -30,7 +29,8 @@ export class MissionsComponent implements OnInit {
     this.columnsP = [
       { id: 'name', name: 'Nombre', pos: 'left', display: 'all' },
       { id: 'description', name: 'Descripción', pos: 'left', display: 'all' },
-      { id: 'missionPoint', name: 'TFCoins', pos: 'left', display: 'all' }];
+      { id: 'missionPoint', name: 'TFCoins', pos: 'left', display: 'all' },
+      { id: 'percentGoals', name: 'Progreso', pos: 'left', display: 'all' }];
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class MissionsComponent implements OnInit {
       .pipe(
         map(arraymissions =>
           arraymissions.map(mission => {
-            return new missionDto(mission.description, mission.key, mission.name, mission.status, mission.goalUser.filter(p => p.key===this.kidSelected.id)[0].goalPoint, mission.goalUser);
+            return new missionDto(mission.description, mission.key, mission.name, mission.status, mission.percentGoals, mission.goalUser.filter(p => p.key===this.kidSelected.id)[0].goalPoint, mission.goalUser);
           })
         )
       ).subscribe(
@@ -60,6 +60,7 @@ export class missionDto {
   public name: string;
   public status: string;
   public missionPoint: number;
+  public percentGoals: number;
   public goalUser: goalUserDto[];
 
   constructor(
@@ -67,6 +68,7 @@ export class missionDto {
     _key: string,
     _name: string,
     _status: string,
+    _percentGoals: number,
     _missionPoint: number,
     _goalUser: goalUserDto[]
   ) {
@@ -75,6 +77,7 @@ export class missionDto {
     this.name = _name;
     this.status = _status;
     this.missionPoint = _missionPoint;
+    this.percentGoals = _percentGoals;
     this.goalUser = _goalUser;
   }
 }
