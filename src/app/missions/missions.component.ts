@@ -30,7 +30,7 @@ export class MissionsComponent implements OnInit {
       { id: 'name', name: 'Nombre', pos: 'left', display: 'all' },
       { id: 'description', name: 'Descripción', pos: 'left', display: 'all' },
       { id: 'missionPoint', name: 'TFCoins', pos: 'left', display: 'all' },
-      { id: 'percentGoals', name: 'Progreso', pos: 'left', display: 'all' }];
+      { id: 'percentGoals', name: 'Porcentaje de Asignación', pos: 'left', display: 'all' }];
   }
 
   ngOnInit(): void {
