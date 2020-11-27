@@ -42,7 +42,10 @@ export class MissionsComponent implements OnInit {
       .pipe(
         map(arraymissions =>
           arraymissions.map(mission => {
-            return new missionDto(mission.description, mission.key, mission.name, mission.status, mission.percentGoals, mission.goalUser.filter(p => p.key===this.kidSelected.id)[0].goalPoint, mission.goalUser);
+
+            var n = mission.goalUser.filter(p => p.key===this.kidSelected.id)[0].goalPoint;
+            n = parseFloat((Math.round( n * 100) / 100).toFixed(2));
+            return new missionDto(mission.description, mission.key, mission.name, mission.status, mission.percentGoals, n, mission.goalUser);
           })
         )
       ).subscribe(

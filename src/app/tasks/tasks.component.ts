@@ -46,7 +46,6 @@ export class TasksComponent implements OnInit {
         )
       ).subscribe(
         data => {
-          console.log(data);
           this.tasks = data;
           this.tasks$.next(this.tasks);
         }
@@ -55,23 +54,12 @@ export class TasksComponent implements OnInit {
 
   newTask(): void {
     const dialogRef = this.dialog.open(NewTaskDialogComponent, {
-      data: { name: '', description: '', points: 0 }
+      data: { name: '', description: '', taskPoint: 0 }
     });
     dialogRef.afterClosed().subscribe(result => {
+      
       const newData = new TaskDto(result.description, "", result.name, "No empezado", result.taskPoint);
-      // this.tasks.push(newData);
-      // this.tasks$.next(this.tasks);
-      const body = new HttpParams()
-        .set('description', result.description)
-        .set('key', "")
-        .set('name', result.name)
-        .set('status', "No empezada")
-        .set('points', result.taskPoint);
-
-      //const paramsArray = body.keys().map(x => ({ [x]: body.get(x) }));
-
-      console.log(JSON.stringify(body));
-
+     
       let httpHeaders = new HttpHeaders({
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'
@@ -83,7 +71,7 @@ export class TasksComponent implements OnInit {
       this.httpClient.post<void>(environment.apiUrl + '/tasks', JSON.stringify(newData), options)
         .subscribe(
           data => {
-            const newData = new TaskDto(result.description, "", result.name, "No empezado", result.taskPoints);
+            const newData = new TaskDto(result.description, "", result.name, "No empezado", result.taskPoint);
             this.tasks.push(newData);
             this.tasks$.next(this.tasks);
           }

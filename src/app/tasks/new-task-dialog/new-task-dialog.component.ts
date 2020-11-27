@@ -6,7 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface DialogData {
   name: string;
   description: string;
-  points: number;
+  taskPoint: number;
 }
 
 @Component({
@@ -20,12 +20,11 @@ export class NewTaskDialogComponent {
     public dialogRef: MatDialogRef<NewTaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-
     onNoClick() {
       this.dialogRef.close();
     }
 
     createTask() {
-      return { name: this.data.name, description: this.data.description, points: this.data.points }
+      return { name: this.data.name, description: this.data.description, taskPoint: this.data.taskPoint }
     }
 }
